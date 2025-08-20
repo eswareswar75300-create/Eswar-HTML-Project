@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Bike Showroom</title>
+    <link rel="stylesheet" href="bike.css">
+</head>
+<body>
+     
+        <nav>
+
+            <a href="#about">About</a>
+            <a href="#bike soecs">Specifications</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#videos">videos</a>
+              <a href="#contact">Contact</a>
+        </nav>
+<section id="home">
+    <h1>welcome to Super Bikes Showroom</h1>
+    <p>Find your Dream Bike us!</p>
+</section>
+<section id="bike specs">
+    <h2>Bikes Collections</h2>
+    <div class="bikes-img">
+        <div id="bike">
+            <img  src="bike.jpeg" alt="Bike 1" width="200px">
+            <h3>Yamaha R15</h3>
+            <p>1,00,000</p>
+            <button onclick="addToCart('Yamaha R15')">Add to Cart</button>
+        </div>
+        <div id="bike">
+            <img src="spr bike.jpeg" alt="Bike 2" width="200px">
+            <h3>KTM Duke 390</h3>
+            <p>Rs.2,10,000</p>
+            <button onclick="addToCart('KTM Duke 390')">Add to Cart</button>
+           </div>
+           <div id="bike">
+            <img src="eswar bike.jpeg" alt="Bike 3" width="200px">
+            <h3>Royal Enfield</h3>
+            <p>Rs.3,10,000</p>
+            <button onclick="addToCart('Royal Enfield')">Add to Cart</button>
+           </div>
+        <div id="bike">
+            <img src="super bike.jpeg" alt="Bike 4" width="200px">
+            <h3>MT 15</h3>
+            <p>Rs.2,20,000</p>
+            <button onclick="addToCart('MT 15')">Add to Cart</button>
+        </div>
+         <div id="bike">
+            <img src="Super bike.jpg" alt="Bike 5" width="200px">
+            <h3>GT 15</h3>
+            <p>Rs.2,50,000</p>
+            <button onclick="addToCart('GT 15')">Add to Cart</button>
+        </div>
+        <h3 id="cart-items">Cart:Empty</h3>
+    </div>
+</section>
+<section>
+    <h2>Avilable Bikes</h2>
+    <div> <input type="text" id="searchbox" placeholder="Search Bikes...">
+    </div>
+    <div id="bikelist">
+    <div id="bike-card" data-name="Yamaha R15">
+    <img  src="bike.jpeg" alt="Bike 1" width="200px">
+            <h3>Yamaha R15</h3>
+            <p>1,00,000</p>
+            </div>
+            <div id="bike-card" data-name="KTM Duke 390">
+            <img src="spr bike.jpeg" alt="Bike 2" width="200px">
+            <h3>KTM Duke 390</h3>
+            <p>Rs.2,10,000</p>
+            </div>
+            <div id="bike-card" data-name="Royal Enfield">
+            <img src="eswar bike.jpeg" alt="Bike 3" width="200px">
+            <h3>Royal Enfield</h3>
+            <p>Rs.3,10,000</p>
+            </div>
+            <div id="bike-card" data-name="MT 15">
+            <img src="super bike.jpeg" alt="Bike 4" width="200px">
+            <h3>MT 15</h3>
+            <p>Rs.2,20,000</p>
+            </div>
+            <div id="bike-card" data-name="GT 15">
+            <img src="Super bike.jpg" alt="Bike 5" width="200px">
+            <h3>GT 15</h3>
+            <p>Rs.2,50,000</p>
+            </div>
+</section>
+<section id="Contact">
+    <h2>Contact us</h2>
+    <form  action="" id="contactform">
+        <input type="text" id="name" placeholder="Enter the Name">
+        <input type="email" id="email" placeholder="Enter the Email">
+        <input type="tel" id="phone" placeholder="Mobile Number">
+        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+        <button type ="submit">Send</button>
+    </form>
+</section>
+<div id="Thankyou">
+    <h2>Thank You</h2>
+    <p> We have received your message.Our Team will Contact you soon</p>
+</div>
+</body>
+<script>
+    let cart = [];
+    function addToCart(bikeName){
+        cart.push(bikeName);
+        document.getElementById("cart-items").innerText = "Cart :" + cart.join(",");
+    }
+
+    document.getElementById("searchbox").addEventListener("keyup",function(){
+        let filter = this.value.toLowerCase();
+        let bikes = document.querySelectorAll(".bike-card"); //array of bikes[total bike list]
+        bikes.forEach(bike=>{
+            let name = bike.getAttribute("data-name").toLowerCase();
+            bike.style.display = name.includes(filter)?"block" : "none";
+        })
+    })
+    document.getElementById("contactform").addEventListener("submit",function(e){
+
+        let name = document.getElementById("name").value.trim()
+        let email = document.getElementById("email").value.trim()
+        let phone = document.getElementById("phone").value.trim()
+        let message = document.getElementById("message").value.trim()
+
+        if (name==="" || email==="" || phone==="" || message===""){
+            alert("All fields are required");
+            return;
+        }
+        if(!email.includes("@")){
+            alert("Enter a valid email");
+            return;
+        }
+        if(phone.length<10){
+            alert("Enter the valid mobile number");
+            return;
+        }
+        document.getElementById("contact").style.display = "none"
+        document.getElementById("thankyou").style.display = "block"
+
+            })
+</script>
+</html>
